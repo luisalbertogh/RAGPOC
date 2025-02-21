@@ -1,0 +1,7 @@
+# List of URL settings
+- urls:
+    # List of URLs
+    - https://es.wikipedia.org/wiki/Salamanca
+  tags: 
+    # List of tags
+    - vector-body
