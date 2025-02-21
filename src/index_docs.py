@@ -4,7 +4,7 @@ from os import path
 import yaml
 
 from indexing.doc_embedder import Embedder
-from indexing.doc_loader import load_pdfs
+from indexing.doc_loader import load_markdown
 from indexing.doc_splitter import split_doc
 
 # Configure logging
@@ -38,11 +38,11 @@ def load_url_settings(filepath: str) -> list[dict]:
 if __name__ == "__main__":
 
     # Load pdfs
-    docs = load_pdfs(dirpath='../docs')
+    docs = load_markdown(dirpath='../docs')
 
     # Print documents
     # for doc in docs:
-    #     logger.info(doc.page_content)[0:100]
+    #     logger.info(doc.page_content)[0:50]
 
     # Split documents
     split_docs = split_doc(docs, chunk_details={'chunk_size': 1000, 'chunk_overlap': 200})

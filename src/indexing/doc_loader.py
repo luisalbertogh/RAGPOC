@@ -2,12 +2,41 @@ import logging
 import os
 
 import bs4
-from langchain_community.document_loaders import PyPDFLoader, WebBaseLoader
+from langchain_community.document_loaders import PyPDFLoader, WebBaseLoader, UnstructuredMarkdownLoader
 
 # Configure logging
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+
+def load_markdown(dirpath: list[str]) -> list:
+    """Load Markdown files.
+
+    Args:
+        filepaths (list[str]): List of file paths to load.
+
+    Returns:
+        list[Document]: List of generated documents.
+    """
+    logger.info(f"Loading PDF files from: {dirpath}")
+
+    # Get filepaths
+    filepaths = []
+    for root, _, files in os.walk(dirpath):
+        for file in files:
+            if file.endswith(".md"):
+                filepaths.append(os.path.join(root, file))
+
+    docs = []
+    for filepath in filepaths:
+        logger.info(f"Loading: {filepath}")
+        loader = UnstructuredMarkdownLoader(filepath)
+        for page in loader.lazy_load():
+            docs.append(page)
+
+    logger.info(f"Loaded {len(docs)} documents.")
+    return docs
 
 
 def load_pdfs(dirpath: list[str]) -> list:

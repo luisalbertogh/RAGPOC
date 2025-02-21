@@ -24,5 +24,5 @@ def split_doc(docs: list, chunk_details: dict) -> list:
     )
     all_splits = text_splitter.split_documents(docs)
 
-    logger.info(f"Split blog post into {len(all_splits)} sub-documents.")
+    logger.info(f"Split into {len(all_splits)} sub-documents.")
     return all_splits
