@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # Print documents
     # for doc in docs:
-    #     logger.info(doc.page_content)[0:50]
+    #     logger.info(doc.page_content[0:50])
 
     # Split documents
     split_docs = split_doc(docs, chunk_details={'chunk_size': 1000, 'chunk_overlap': 200})
